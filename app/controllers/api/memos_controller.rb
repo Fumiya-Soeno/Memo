@@ -1,5 +1,5 @@
 class Api::MemosController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :create
+  skip_before_action :verify_authenticity_token, only: [:create, :getTweets]
 
   def create
     memo = Memmo.new(create_params)
