@@ -1,2 +1,7 @@
-# json.error_message @error_message if @error_message
-json.data {users: Memmo.all}
+json.data Memmo.all
+
+@tweets = []
+Memmo.all.each do |memmo|
+  @tweets << memmo.tweet
+end
+json.tweet @tweets
