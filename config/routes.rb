@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api, default: {format: :json} do
     resources :memos, only: [:index, :create] do
       collection do
-        get "getTweets"
+        post "getTweets"
       end
     end
   end
