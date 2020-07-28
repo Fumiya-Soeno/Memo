@@ -1,5 +1,5 @@
 @tweets = []
 Memmo.all.each do |memmo|
-  @tweets << memmo.text
+  @tweets << {text: memmo.text, created_at: memmo.created_at}
 end
-json.data @tweets
+json.tweet @tweets
