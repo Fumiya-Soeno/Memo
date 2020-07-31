@@ -2,10 +2,6 @@
 
 ユーザー一覧<br>
 
-<% if User.all.count %>
-  <%= "ユーザーはいません" %>
-<% end %>
-
 <% User.all.each do |user| %>
   <%= "#{user.account_id}:#{user.account_name}:#{user.email}" %><br>
 <% end %>
