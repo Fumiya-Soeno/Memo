@@ -1,11 +1,16 @@
 <h1>Railsアプリ<%= $date %></h1>
 
-<%= link_to new_user_registration_path do %>
-  <%= "ユーザー登録ページへ" %>
+ユーザー一覧<br>
+
+<% if User.all.count %>
+  <%= "ユーザーはいません" %>
 <% end %>
 
-<br>
+<% User.all.each do |user| %>
+  <%= "#{user.account_id}:#{user.account_name}:#{user.email}" %><br>
+<% end %>
 
+<br><br>
 <% Memmo.all.reverse.each do |memo| %>
   <%= "#{memo.created_at.strftime("%Y年%m月%d日 %H:%M:%S")} #{memo.text}" %><br>
 <% end %>
