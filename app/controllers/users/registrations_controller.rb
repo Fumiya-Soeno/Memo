@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  skip_before_action :verify_authenticity_token, only: [:create]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -10,9 +11,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.new(user_params)
+    unless @user.save!
+      return
+    end
+  end
+
+  private
+  def user_params
+    params[:registration].permit(:account_id, :account_name, :email, :password, :password_confirmation)
+  end
 
   # GET /resource/edit
   # def edit

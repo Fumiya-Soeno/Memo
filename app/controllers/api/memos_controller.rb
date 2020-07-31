@@ -1,5 +1,5 @@
 class Api::MemosController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :getTweets]
+  skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
     if params != ""
