@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     unless @user.save!
       return
     end
+    sign_in(:user, @user)
   end
 
   private
