@@ -2,7 +2,7 @@ class Api::MemosController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :loginConfirm]
 
   def create
-    if params != ""
+    if params[:text] != ""
       memo = Memmo.new(create_params)
       unless memo.save
         @error_message = [memo.errors.full_messages].compact
