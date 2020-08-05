@@ -1,17 +1,20 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  skip_before_action :verify_authenticity_token, only: [:new, :create]
+  skip_before_action :verify_authenticity_token, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  def new
-    super
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource/sign_in
   def create
-    super
+    @user = User.find_by(email: params[:session][:email])
+    if @user.valid_password?(params[:session][:password])
+      sign_in(:user, @user)
+    end
   end
 
   # DELETE /resource/sign_out
